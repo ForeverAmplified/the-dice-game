@@ -1,1 +1,124 @@
 @import "tailwindcss";
+
+html,
+body,
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  flex: 1;
+}
+
+@font-face {
+  font-family: "Orbitron";
+  src: url("./assets/fonts/Orbitron.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-header: #EAF1F8;
+  --color-page: #172B45;
+  --color-footer: #101D30;
+  --color-accent: #8FB6DD;
+
+  --font-orbitron: "Orbitron", sans-serif;
+}
+
+@layer components {
+  .nav-link {
+    @apply relative inline-block;
+  }
+
+  .nav-link::after {
+    content: "";
+    @apply absolute -bottom-1 left-1/2 h-0.5 w-full
+    -translate-x-1/2 origin-center scale-x-0
+    bg-black transition-transform duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply scale-x-100;
+  }
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.2em;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  background-color: currentColor;
+  animation: cursor-blink 0.8s steps(2, start) infinite;
+}
+
+@keyframes cursor-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes dice-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.dice-pulse {
+  animation: dice-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dice-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  20%, 60% {
+    transform: translateY(-4px);
+  }
+
+  40%, 80% {
+    transform: translateY(4px);
+  }
+}
+
+.dice-bounce {
+  animation: dice-bounce 0.9s ease-in-out;
+}
+
+
+@keyframes dice-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  20%, 60% {
+    transform: translateX(-4px);
+  }
+
+  40%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+.dice-shake {
+  animation: dice-shake 0.4s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dice-shake {
+    animation: none;
+  }
+}
