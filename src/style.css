@@ -17,6 +17,14 @@ main {
 }
 
 @font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Orbitron";
   src: url("./assets/fonts/Orbitron.ttf") format("truetype");
   font-weight: 400 900;
@@ -31,26 +39,33 @@ main {
   --color-accent: #8FB6DD;
 
   --font-orbitron: "Orbitron", sans-serif;
+  --font-inter: "Inter", sans-serif;
 }
 
 @layer components {
-  .nav-link {
-    @apply relative inline-block;
+  .nav-item {
+    @apply relative inline-block cursor-pointer;
   }
-
-  .nav-link::after {
+  
+  .nav-item:focus-visible {
+    outline: none;
+  }
+  
+  .nav-item::after {
     content: "";
     @apply absolute -bottom-1 left-1/2 h-0.5 w-full
     -translate-x-1/2 origin-center scale-x-0
     bg-black transition-transform duration-300;
   }
 
-  .nav-link:hover::after {
+
+  .nav-item:focus-visible::after,
+  .nav-item:hover::after {
     @apply scale-x-100;
   }
 }
 
-.typewriter-cursor {
+.prompt-cursor {
   display: inline-block;
   width: 3px;
   height: 1.2em;
@@ -92,10 +107,21 @@ main {
   40%, 80% {
     transform: translateY(4px);
   }
+/*  0%, 70%, 100% {*/
+/*    transform: translateY(0);*/
+/*  }*/
+
+/*  20% {*/
+/*    transform: translateY(-2px);*/
+/*  }*/
+
+/*  40% {*/
+/*    transform: translateY(4px);*/
+/*  }*/
 }
 
 .dice-bounce {
-  animation: dice-bounce 0.9s ease-in-out;
+  animation: dice-bounce 1s ease-in-out;
 }
 
 
@@ -105,7 +131,7 @@ main {
   }
 
   20%, 60% {
-    transform: translateX(-4px);
+    transform: translateX(-2px);
   }
 
   40%, 80% {
@@ -117,8 +143,79 @@ main {
   animation: dice-shake 0.4s ease-in-out;
 }
 
+@keyframes victory-dance {
+  /* Tilt left */
+  0%, 3% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  7% {
+    transform: rotate(-25deg) scale(1);
+  }
+
+  /* Pulse twice */
+  10% {
+    transform: rotate(-25deg) scale(1.10);
+  }
+
+  15% {
+    transform: rotate(-25deg) scale(1);
+  }
+
+  20% {
+    transform: rotate(-25deg) scale(1.10);
+  }
+
+  25% {
+    transform: rotate(-25deg) scale(1);
+  }
+
+  /* Return to neutral */
+  30%, 33% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  /* Tilt right */
+  37% {
+    transform: rotate(25deg) scale(1);
+  }
+
+  /* Pulse twice */
+  40% {
+    transform: rotate(25deg) scale(1.10);
+  }
+
+  45% {
+    transform: rotate(25deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(25deg) scale(1.10);
+  }
+
+  55% {
+    transform: rotate(25deg) scale(1);
+  }
+
+  /* Return to neutral and pause */
+  60%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.victory-dance {
+  animation: victory-dance 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .dice-shake {
+  .dice-shake,
+  .victory-dance {
     animation: none;
   }
 }
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 50%);
+}
+

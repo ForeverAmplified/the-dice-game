@@ -1,6 +1,8 @@
 import { type DieValue } from "../components/Die.tsx";
+
+type RequiredPairKey = "1,2" | "2,3" | "3,4" | "4,5" | "5,6" | "1,6";
+
 export function isPairSequence(dice: DieValue[]) {
-  console.log("isPairSequence", [...dice]);
   const [a, b] = [...dice].sort((x, y) => x - y);
 
   // Normal consecutive pair
@@ -12,15 +14,17 @@ export function isPairSequence(dice: DieValue[]) {
   return a === 1 && b === 6;
 }
 
-export function getRequiredPairs(dice: DieValue[]) {
+export function getRequiredPairs(dice: DieValue[]): DieValue[][] | null {
   const [a, b] = [...dice].sort((x, y) => x - y);
 
   if (!isPairSequence(dice)) {
     return null; // Game over
   }
 
-  // The two possible pairs that complete a 4-number sequence
-  const requirements = {
+  const key = `${a},${b}` as RequiredPairKey;
+
+  // The two possible pairs that complete the 4-number sequence
+  const requirements: Record<RequiredPairKey, DieValue[][]> = {
     "1,2": [[3, 4], [5, 6]],
     "2,3": [[4, 5], [1, 6]],
     "3,4": [[5, 6], [1, 2]],
@@ -29,7 +33,7 @@ export function getRequiredPairs(dice: DieValue[]) {
     "1,6": [[2, 3], [4, 5]]
   };
 
-  return requirements[`${a},${b}`];
+  return requirements[key];
 }
 
 export function completesSequence(dice: DieValue[], requiredPairs: DieValue[][]) {

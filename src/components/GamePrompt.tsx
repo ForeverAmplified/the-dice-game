@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-type statusProps = {
+type MessageProps = {
   message: string;
 };
 
-export default function GameMessage({ message }: statusProps) {
+export default function GamePrompt({ message }: MessageProps) {
   const [displayedMessage, setDisplayedMessage] = useState("");
 
   useEffect(() => {
@@ -18,14 +18,15 @@ export default function GameMessage({ message }: statusProps) {
       if (characterIndex >= message.length) {
         clearInterval(intervalId);
       }
-    }, 25);
+    }, 15);
 
     return () => clearInterval(intervalId);
   }, [message]);
 
   return (
-      <p className="whitespace-pre-line">{displayedMessage}
-        <span className="typewriter-cursor" />
-      </p>
+    <p className="whitespace-pre-line">
+      {displayedMessage}
+      <span className="prompt-cursor" />
+    </p>
   );
 }
