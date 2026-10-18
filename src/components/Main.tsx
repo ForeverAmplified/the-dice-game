@@ -12,15 +12,32 @@ import { type DieValue } from "./Die";
 
 export type GamePhase = "firstRoll" | "firstRollFail" | "secondRoll" | "secondRollFail" | "connected" | "gameOver";
 
+type RollingPair = "first" | "second" | null;
+
 export default function Main() {
   const [gamePhase, setGamePhase] = useState<GamePhase>("firstRoll");
+  const [rollingPair, setRollingPair] = useState<RollingPair>(null);
   const [dicePairOne, setDicePairOne] = useState<[DieValue, DieValue]>([1, 1]);
   const [dicePairTwo, setDicePairTwo] = useState<[DieValue, DieValue]>([1, 1]);
   const [requiredPairs, setRequiredPairs] = useState<DieValue[][] | null>(null);
+  const [pendingFirstRoll, setPendingFirstRoll] = useState<{
+    requiredPairs: ReturnType<typeof getRequiredPairs>;
+  } | null>(null);
+  const [pendingSecondRoll, setPendingSecondRoll] = useState<boolean | null>(null);
 
   function handleFirstDiceRoll() {
     const { die1, die2 } = GamePlay.rollPair();
-    const requiredPairs = getRequiredPairs([die1, die2])
+    const requiredPairs = getRequiredPairs([die1, die2]);
+
+    setDicePairOne([die1, die2]);
+    setPendingFirstRoll({ requiredPairs });
+    setRollingPair("first");
+  }
+
+  function handleFirstRollAnimationEnd() {
+    if (!pendingFirstRoll) return;
+
+    const { requiredPairs } = pendingFirstRoll;
 
     if (requiredPairs) {
       setRequiredPairs(requiredPairs);
@@ -29,34 +46,45 @@ export default function Main() {
       setGamePhase("firstRollFail");
     }
 
-    setDicePairOne([die1, die2]);
+    setPendingFirstRoll(null);
+    setRollingPair(null);
   }
 
   function handleSecondDiceRoll() {
     const { die1, die2 } = GamePlay.rollPair();
 
-    if (requiredPairs !== null && completesSequence([die1, die2], requiredPairs)) {
-      setGamePhase("connected");
-    }
-    else {
-      setGamePhase("secondRollFail");
-    }
-
     setDicePairTwo([die1, die2]);
+
+    const isSuccessfulRoll = requiredPairs !== null && completesSequence([die1, die2], requiredPairs);
+
+    setPendingSecondRoll(isSuccessfulRoll);
+    setRollingPair("second");
+  }
+
+  function handleSecondRollAnimationEnd() {
+    if (pendingSecondRoll === null) return;
+
+    setGamePhase(
+      pendingSecondRoll ? "connected" : "secondRollFail"
+    );
+
+    setPendingSecondRoll(null);
+    setRollingPair(null);
   }
 
   function resetGame() {
+    setRollingPair(null);
     setDicePairOne([1, 1]);
     setDicePairTwo([1, 1]);
     setRequiredPairs(null);
+    setPendingSecondRoll(null);
     setGamePhase("firstRoll");
   }
 
   let dieOneClasses = "h-16 w-16";
   let dieTwoClasses = "h-16 w-16";
-  let gamePromptClasses = "flex border rounded-lg bg-footer shadow-footer shadow-sm p-3 h-26 w-86 text-sm";
-  let diceButtonLabel = "Roll Dice";
-  let handleClick = handleFirstDiceRoll;
+  let gamePromptClasses = "flex border rounded-lg bg-footer shadow-footer shadow-sm p-3 h-26 w-87 text-sm";
+  let handleButtonClick = handleFirstDiceRoll;
 
   if (gamePhase === "firstRoll" || gamePhase === "secondRoll") {
     gamePromptClasses += " border-accent/80 text-header/80";
@@ -64,9 +92,9 @@ export default function Main() {
     if (gamePhase === "firstRoll") {
       dieOneClasses += " dice-bounce";
     } else {
-      dieOneClasses = "dice-pulse h-18 w-18"; //bg-amber-50 shadow-amber-200/60"
+      dieOneClasses = "dice-pulse h-17 w-17"; //bg-amber-50 shadow-amber-200/60"
       dieTwoClasses += " dice-bounce";
-      handleClick = handleSecondDiceRoll;
+      handleButtonClick = handleSecondDiceRoll;
     }
   }
 
@@ -81,28 +109,32 @@ export default function Main() {
       gamePromptClasses += " border-red-400 text-red-400";
     }
 
-    diceButtonLabel = "Play Again";
-    handleClick = resetGame;
+    handleButtonClick = resetGame;
   }
 
   return (
-    <main className="flex flex-col items-center gap-13 mt-22 h-full font-orbitron font-bold text-header">
-      <div key={gamePhase} className="flex flex-row items-center">
+    <main className="flex flex-col flex-1 items-center gap-13 mt-14 h-full font-orbitron font-bold text-header md:mt-22">
+      <div key={gamePhase} className="flex flex-row items-center gap-1">
         <Dice
           className={dieOneClasses}
           firstPair={true}
           phase={gamePhase}
+          isRolling={rollingPair === "first"}
           values={dicePairOne}
           validPairs={null}
           disabled={gamePhase === "firstRollFail" || gamePhase === "secondRollFail"}
+          onRollAnimationEnd={() => handleFirstRollAnimationEnd()}
+
         />
         <Dice
           className={dieTwoClasses}
           firstPair={false}
           phase={gamePhase}
+          isRolling={rollingPair=== "second"}
           values={dicePairTwo}
           validPairs={requiredPairs !== null ? requiredPairs : null}
           disabled={gamePhase === "firstRoll" || gamePhase === "firstRollFail" || gamePhase === "secondRollFail"}
+          onRollAnimationEnd={() => handleSecondRollAnimationEnd()}
         />
       </div>
 
@@ -110,12 +142,13 @@ export default function Main() {
         <GamePrompt key={gamePrompts[gamePhase]} message={gamePrompts[gamePhase]} />
       </div>
 
-      <div className="flex flex-col w-84">
+      <div className="flex flex-col w-87">
         <Button
-          className="bg-accent py-2 rounded-full text-black font-bold text-base cursor-pointer hover:bg-accent/80"
-          onClick={handleClick}
+          className="bg-accent py-2 rounded-full text-black font-bold text-lg cursor-pointer hover:bg-accent/80 disabled:opacity-50 disabled:cursor-not-allowed"
+          onClick={handleButtonClick}
+          disabled={rollingPair !== null}
         >
-          {diceButtonLabel}
+          {gamePhase === "firstRoll" || gamePhase === "secondRoll" ? "Roll Dice" : "Play Again"}
         </Button>
       </div>
     </main>

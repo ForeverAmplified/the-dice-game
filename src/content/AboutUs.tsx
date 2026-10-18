@@ -1,6 +1,6 @@
 export default function AboutUs() {
   return (
-    <div className="max-h-[calc(80vh-70px)] p-6 space-y-4 overflow-y-auto">
+    <div className=" md:max-h-[calc(80vh-70px)] p-6 space-y-4 overflow-y-auto">
       <h2 className="font-orbitron font-medium text-xl">How We Got Here</h2>
       <p>
         It all started when four friends decided to take on a challenge:
@@ -23,10 +23,9 @@ export default function AboutUs() {
       </p>
       <p>
         A simple coin flip or game of rock-paper-scissors was not going to cut it. We're four highly competitive friends
-        who love a challenge and an opportunity for some trash talking.  We needed a solution that was not only a fair
-        and impartial way to settle things or make decisions, but one that also played off of our competitiveness
-        and posed a challenge.  It also had to be something that could be played anywhere anytime.  And so "The Dice
-        Game" was born.
+        who love a challenge.  We needed a solution that was not only a fair and impartial way to settle things or make
+        decisions, but one that also played off of our competitiveness and posed a challenge.  It also had to be
+        something that could be played anywhere anytime.  And so "The Dice Game" was born.
       </p>
       <p>
         The Dice Game has been played in some of the finest and not-so-finest establishments across the country.

@@ -15,13 +15,6 @@ const defaultTargetPairs: DieValue[][][] = [
 ];
 
 export default function ValidPairs({ firstPair, phase, validPairs, disabled }: comboProps) {
-  const dieClass = "w-6 h-6";
-  let classes = "flex flex-col items-center gap-2";
-
-  if (disabled || (phase === 'secondRoll' && firstPair)) {
-    classes += " opacity-50";
-  }
-
   let renderValidPairs;
 
   if (!firstPair && validPairs === null) {
@@ -46,12 +39,12 @@ export default function ValidPairs({ firstPair, phase, validPairs, disabled }: c
       <div key={pair.flat().join("-")} className="flex flex-col gap-2">
         <div className="flex justify-between gap-6">
           <div className="flex gap-1">
-            <Die className={dieClass} value={pair[0][0]} disabled={false} />
-            <Die className={dieClass} value={pair[0][1]} disabled={false} />
+            <Die className="h-6 w-6" value={pair[0][0]} disabled={false} />
+            <Die className="h-6 w-6" value={pair[0][1]} disabled={false} />
           </div>
           <div className="flex gap-1">
-            <Die className={dieClass} value={pair[1][0]} disabled={false} />
-            <Die className={dieClass} value={pair[1][1]} disabled={false} />
+            <Die className="h-6 w-6" value={pair[1][0]} disabled={false} />
+            <Die className="h-6 w-6" value={pair[1][1]} disabled={false} />
           </div>
         </div>
       </div>
@@ -59,8 +52,8 @@ export default function ValidPairs({ firstPair, phase, validPairs, disabled }: c
   }
 
   return (
-    <div className={classes}>
-      <div className="flex flex-col gap-0 items-center border-b w-9/10">
+    <div className={`flex flex-col items-center gap-2 ${disabled || (phase === 'secondRoll' && firstPair) ? "opacity-50" : ""}`}>
+      <div className="border-b flex flex-col gap-0 items-center w-9/10">
         <p className="text-sm">Valid Pairs</p>
       </div>
       {renderValidPairs}

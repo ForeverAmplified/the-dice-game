@@ -1,6 +1,6 @@
 export default function HowToPlay() {
   return (
-    <div className="max-h-[calc(80vh-70px)] p-6 space-y-4 overflow-y-auto">
+    <div className="max-h-[calc(95vh-70px)] md:max-h-[calc(80vh-70px)] p-6 space-y-4 overflow-y-auto">
       <h2 className="font-orbitron font-medium text-xl">The Basics</h2>
       <p>
         The game is played with 4 standard six-sided dice.  It can be played 1 vs 1 or team vs team.  The concept is
@@ -15,13 +15,13 @@ export default function HowToPlay() {
       <p>
         1 pair of dice is rolled at a time.  The first roll has 6 possible
         consecutive pairs:
-        <span className="rounded-md ml-2 px-2 bg-header/90 text-page">1 <span className="text-sm">&</span> 2</span>
-        <span className="rounded-md ml-2 px-2 bg-header/90 text-page">2 <span className="text-sm">&</span> 3</span>
-        <span className="rounded-md ml-2 px-2 bg-header/90 text-page">3 <span className="text-sm">&</span> 4</span>
-        <span className="rounded-md ml-2 px-2 bg-header/90 text-page">4 <span className="text-sm">&</span> 5</span>
-        <span className="rounded-md ml-2 px-2 bg-header/90 text-page">5 <span className="text-sm">&</span> 6</span>
+        <span className="inline-block rounded-md ml-2 px-2 bg-header/90 text-page text-sm">1 <span className="text-xs">&</span> 2</span>
+        <span className="inline-block rounded-md ml-2 px-2 bg-header/90 text-page text-sm">2 <span className="text-xs">&</span> 3</span>
+        <span className="inline-block rounded-md ml-2 px-2 bg-header/90 text-page text-sm">3 <span className="text-xs">&</span> 4</span>
+        <span className="inline-block rounded-md ml-2 px-2 bg-header/90 text-page text-sm">4 <span className="text-xs">&</span> 5</span>
+        <span className="inline-block rounded-md ml-2 px-2 bg-header/90 text-page text-sm">5 <span className="text-xs">&</span> 6</span>
         <span className="ml-2">or</span>
-        <span className="rounded-md mx-2 px-2 bg-header/90 text-page">6 <span className="text-sm">&</span> 1</span>
+        <span className="inline-block rounded-md mx-2 px-2 bg-header/90 text-page text-sm">6 <span className="text-xs">&</span> 1</span>
         (6 wraps back around to 1 and is considered a consecutive pair is this game).
       </p>
       <p>
@@ -50,7 +50,7 @@ export default function HowToPlay() {
       </h3>
       <p>
         The first roll is
-        <span className="rounded-md ml-1 px-2 bg-header/90 text-page">1 <span className="text-sm">&</span> 5</span>.
+        <span className="inline-block rounded-md ml-1 px-2 bg-header/90 text-page text-sm">1 <span className="text-xs">&</span> 5</span>.
         That is not one of the consecutive pairs.  It's over before it even started. The dice go to the opposing player
         or team.
       </p>
@@ -59,7 +59,7 @@ export default function HowToPlay() {
       </h3>
       <p>
         The first roll is
-        <span className="rounded-md ml-1 px-2 bg-header/90 text-page">3 <span className="text-sm">&</span> 4</span>.
+        <span className="inline-block rounded-md ml-1 px-2 bg-header/90 text-page text-sm">3 <span className="text-xs">&</span> 4</span>.
         That is one of the consecutive pairs.  The beginning of the 4 dice straight is established. The second pair of
         dice are now activated and the real challenge begins.
       </p>
@@ -68,29 +68,29 @@ export default function HowToPlay() {
       </h3>
       <p>
         With
-        <span className="rounded-md mx-1 px-2 bg-header/90 text-page">3 <span className="text-sm">&</span> 4</span>
+        <span className="inline-block rounded-md mx-1 px-2 bg-header/90 text-page text-sm">3 <span className="text-xs">&</span> 4</span>
         established, only 2 valid consecutive pairs can to complete the straight:
-        <span className="rounded-md mx-1 px-2 bg-header/90 text-page">1 <span className="text-sm">&</span> 2</span>
-        or <span className="rounded-md px-2 bg-header/90 text-page">5 <span className="text-sm">&</span> 6</span>.
+      <span className="inline-block rounded-md mx-1 px-2 bg-header/90 text-page text-sm">1 <span className="text-xs">&</span> 2</span>
+        or <span className="inline-block rounded-md px-2 bg-header/90 text-page text-sm">5 <span className="text-xs">&</span> 6</span>.
       </p>
       <p>
         If neither of these 2 combinations are rolled, the turn is over and the dice go to the opposing player or team.
       </p>
       <p>
-        If you do roll one of these 2 combinations, congratulations! You have done what Steve rarely can do.
+        If one of these combinations is rolled, congratulations! You have done what Steve rarely can do.
         The straight is completed and hopefully you've earned something good or avoided something bad.
       </p>
       <h2 className="font-orbitron font-medium text-xl">Team Play</h2>
       <p>
         There are no hard and fast rules about how to conduct team play.  We suggest players on a team each roll one of
-        the pairs of dice in each round.  For example, in a 2 person team, the first team member rolls the first pair of
-        dice and the second team member would roll the second pair in the round.  It is a good idea to alternate which
-        team member starts the round as the first roll may not roll a consecutive pair and the dice will be passed to
+        the pairs of dice in each round.  For example, in a 2 person team, one team member rolls the first pair of
+        dice and the other team member would roll the second pair in the round.  It is a good idea to alternate which
+        team member starts the round as the first roll may not result in a consecutive pair and the dice will be passed to
         the next team.
       </p>
       <h2 className="font-orbitron font-medium text-xl">Notes On Winning</h2>
       <p>
-        The game can be played as a "one-and-one" or best 2 out of 3.  Whatever suits your needs.
+        The game can be played as a one-and-done, best 2 out of 3 or whatever suits your needs.
       </p>
       <p>
         In the spirit of fairness, the player or team who rolls second always has a chance to tie a round (or game if

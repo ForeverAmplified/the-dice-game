@@ -50,14 +50,21 @@ main {
   .nav-item:focus-visible {
     outline: none;
   }
-  
-  .nav-item::after {
+
+  .nav-item::after,
+  .mobile-menu-header.nav-item::after {
     content: "";
     @apply absolute -bottom-1 left-1/2 h-0.5 w-full
     -translate-x-1/2 origin-center scale-x-0
     bg-black transition-transform duration-300;
   }
 
+  .mobile-menu.nav-item::after {
+    content: "";
+    @apply absolute -bottom-1 left-1/2 h-0.5 w-full
+    -translate-x-1/2 origin-center scale-x-0
+    bg-header/90 transition-transform duration-300;
+  }
 
   .nav-item:focus-visible::after,
   .nav-item:hover::after {
@@ -78,6 +85,33 @@ main {
 @keyframes cursor-blink {
   to {
     visibility: hidden;
+  }
+}
+
+.die-rolling {
+  animation: die-shake 700ms ease-in-out;
+}
+
+@keyframes die-shake {
+  0%,
+  100% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+
+  20% {
+    transform: rotate(-18deg) translate(-2px, -1px); /* was -8 */
+  }
+
+  40% {
+    transform: rotate(20deg) translate(2px, 1px); /* was 8 */
+  }
+
+  60% {
+    transform: rotate(-18deg) translate(1px, -2px); /* was -4 */
+  }
+
+  80% {
+    transform: rotate(10deg) translate(-1px, 1px); /* was 4 */
   }
 }
 
@@ -105,19 +139,8 @@ main {
   }
 
   40%, 80% {
-    transform: translateY(4px);
+    transform: translateY(2px);
   }
-/*  0%, 70%, 100% {*/
-/*    transform: translateY(0);*/
-/*  }*/
-
-/*  20% {*/
-/*    transform: translateY(-2px);*/
-/*  }*/
-
-/*  40% {*/
-/*    transform: translateY(4px);*/
-/*  }*/
 }
 
 .dice-bounce {
@@ -215,7 +238,40 @@ main {
   }
 }
 
-dialog::backdrop {
-  background: rgb(0 0 0 / 50%);
+dialog.modal-dialog::backdrop {
+  background-color: rgb(0 0 0 / 0%);
+  transition: background-color 300ms ease-out;
 }
 
+dialog.modal-dialog:open::backdrop {
+  background-color: rgb(0 0 0 / 60%);
+}
+
+dialog.modal-dialog.modal-closing::backdrop {
+  background-color: rgb(0 0 0 / 0%);
+}
+
+.modal-dialog {
+  opacity: 0;
+  scale: 0.95;
+  transition:
+    opacity 300ms ease-out,
+    scale 300ms ease-out;
+}
+
+.modal-dialog:open {
+  opacity: 1;
+  scale: 1;
+}
+
+.modal-dialog.modal-closing {
+  opacity: 0;
+  scale: 0.95;
+}
+
+@starting-style {
+  .modal-dialog[open] {
+    opacity: 0;
+    scale: 0.95;
+  }
+}
