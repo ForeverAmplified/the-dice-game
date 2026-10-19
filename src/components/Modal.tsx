@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ComponentPropsWithoutRef, MouseEvent, SyntheticEvent, TransitionEvent } from "react";
 import { createPortal } from "react-dom";
 
@@ -62,18 +62,20 @@ export default function HowToPlay({ isOpen, source, onClose, children }: ModalPr
     setIsClosing(false);
   }
 
+  const dialogClasses = `
+    modal-dialog m-auto  w-[min(90vw,600px)] max-h-[80vh] overflow-hidden rounded-lg bg-page font-inter text-header
+    origin-center open:scale-100 open:opacity-100 starting:open:scale-95 starting:open:opacity-0
+  `;
+
   return createPortal (
     <dialog
       ref={dialogRef}
-      className={`
-        modal-dialog m-auto  w-[min(90vw,600px)] max-h-[80vh] overflow-hidden rounded-lg bg-page font-inter text-header
-        origin-center open:scale-100 open:opacity-100 starting:open:scale-95 starting:open:opacity-0 ${isClosing ? "modal-closing" : ""}
-      `}
+      className={`${dialogClasses} ${isClosing ? "modal-closing" : ""}`}
       onCancel={handleCancel}
       onClick={(event) => handleBackdropClick(event)}
       onTransitionEnd={handleTransitionEnd}
     >
-      <header className="flex justify-between items-center py-4 px-5  bg-header font-orbitron font-bold text-black text-xl">
+      <header className="flex justify-between items-center py-4 px-5 bg-header font-orbitron font-bold text-black text-xl">
         <span>
           {source}
         </span>

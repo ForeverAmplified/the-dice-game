@@ -15,27 +15,24 @@ const defaultTargetPairs: DieValue[][][] = [
 ];
 
 export default function ValidPairs({ firstPair, phase, validPairs, disabled }: comboProps) {
-  let renderValidPairs;
+  const showPlaceHolders = !firstPair && validPairs === null;
+  const pairs = validPairs ? [validPairs] : defaultTargetPairs;
 
-  if (!firstPair && validPairs === null) {
-    renderValidPairs = (
-      <div className="flex flex-col gap-2">
-        <div className="flex justify-between gap-6">
-          <div className="flex gap-2">
-            <div>??</div>
-            <div>??</div>
-          </div>
-          <div className="flex gap-2">
-            <div>??</div>
-            <div>??</div>
-          </div>
+  const renderValidPairs = showPlaceHolders ? (
+    <div className="flex flex-col gap-2">
+      <div className="flex justify-between gap-6">
+        <div className="flex gap-2">
+          <div>??</div>
+          <div>??</div>
+        </div>
+        <div className="flex gap-2">
+          <div>??</div>
+          <div>??</div>
         </div>
       </div>
-    );
-  } else {
-    const pairs = validPairs ? [validPairs] : defaultTargetPairs;
-
-    renderValidPairs = pairs.map((pair) => (
+    </div>
+  ) : (
+    pairs.map((pair) => (
       <div key={pair.flat().join("-")} className="flex flex-col gap-2">
         <div className="flex justify-between gap-6">
           <div className="flex gap-1">
@@ -48,8 +45,8 @@ export default function ValidPairs({ firstPair, phase, validPairs, disabled }: c
           </div>
         </div>
       </div>
-    ));
-  }
+    ))
+  );
 
   return (
     <div className={`flex flex-col items-center gap-2 ${disabled || (phase === 'secondRoll' && firstPair) ? "opacity-50" : ""}`}>

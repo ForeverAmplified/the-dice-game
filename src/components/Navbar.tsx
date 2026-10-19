@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import logoImg from '../assets/dice.svg'
+import logoImg from '../assets/images/dice.svg'
 
 import Hamburger from './Hamburger.tsx'
 import MobileMenu from "./MobileMenu.tsx";
@@ -55,16 +55,22 @@ export default function Navbar() {
         {/* Logo */}
         <a href="/" className="flex flex-col items-center leading-none">
           <span className="text-sm md:text-base">The</span>
-          <img className="-my-1 h-9 w-9 opacity-80 md:-my-1 md:w-10 md:h-10" src={logoImg} alt="dice icon" />
+          <img className="-my-1 h-9 w-9 opacity-80 md:-my-1 md:h-10 md:w-10" src={logoImg} alt="dice icon" />
           <span className="text-sm md:text-base -mt-0.5">Game</span>
         </a>
 
         {/* Navigation */}
         <div className="hidden md:flex md:items-center md:gap-6">
-          <NavItem className="nav-item" onNavItemClick={() => handleModalOpen("howToPlay")}>
+          <NavItem
+            className="nav-item"
+            onNavItemClick={() => handleModalOpen("howToPlay")}
+          >
             How to Play
           </NavItem>
-          <NavItem className="nav-item" onNavItemClick={() => handleModalOpen("aboutUs")}>
+          <NavItem
+            className="nav-item"
+            onNavItemClick={() => handleModalOpen("aboutUs")}
+          >
             About Us
           </NavItem>
         </div>
@@ -79,7 +85,10 @@ export default function Navbar() {
             <>
               <header className="shrink-0 flex justify-start items-center  bg-header rounded-tl-lg h-18 pl-4 font-orbitron text-2xl text-black font-bold">
                 {componentContent !== null && (
-                  <NavItem className="mobile-menu-header nav-item" onNavItemClick={() => handleMenuItemLoad(null)}>
+                  <NavItem
+                    className="mobile-menu-header nav-item"
+                    onNavItemClick={() => handleMenuItemLoad(null)}
+                  >
                     Back
                   </NavItem>
                 )}
@@ -87,10 +96,16 @@ export default function Navbar() {
 
               {componentContent === null ? (
                 <div className="flex flex-col flex-1  items-start min-h-0 gap-12 px-15 pt-24 bg-page">
-                  <NavItem className="mobile-menu nav-item" onNavItemClick={() => handleMenuItemLoad("howToPlay")}>
+                  <NavItem
+                    className="mobile-menu nav-item"
+                    onNavItemClick={() => handleMenuItemLoad("howToPlay")}
+                  >
                     How to Play
                   </NavItem>
-                  <NavItem className="mobile-menu nav-item" onNavItemClick={() => handleMenuItemLoad("aboutUs")}>
+                  <NavItem
+                    className="mobile-menu nav-item"
+                    onNavItemClick={() => handleMenuItemLoad("aboutUs")}
+                  >
                     About Us
                   </NavItem>
                 </div>

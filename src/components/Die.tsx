@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export type DieValue = 1 | 2 | 3 | 4 | 5 | 6;
 

@@ -5,7 +5,7 @@ type DiePair = {
   die2: DieValue;
 }
 
-export class Dice {
+export class DiceRoller {
   static roll(sides = 6): DieValue {
     const max = 2 ** 32;
     const limit = max - (max % sides);
@@ -19,8 +19,8 @@ export class Dice {
   }
 
   static rollPair(sides = 6): DiePair {
-    const die1 = Dice.roll(sides);
-    const die2 = Dice.roll(sides);
+    const die1 = DiceRoller.roll(sides);
+    const die2 = DiceRoller.roll(sides);
 
     return {
       die1,

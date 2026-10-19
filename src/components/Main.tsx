@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { getRequiredPairs, completesSequence } from "../game/roll-validators.ts";
-import { Dice as GamePlay } from "../game/DiceRollLogic";
+import { DiceRoller } from "../game/DiceRoller.ts";
 import { gamePrompts } from "../game-data/game-prompts";
 
 import Dice from "./Dice";
@@ -25,8 +25,8 @@ export default function Main() {
   } | null>(null);
   const [pendingSecondRoll, setPendingSecondRoll] = useState<boolean | null>(null);
 
-  function handleFirstDiceRoll() {
-    const { die1, die2 } = GamePlay.rollPair();
+  function handleFirstDiceRoller() {
+    const { die1, die2 } = DiceRoller.rollPair();
     const requiredPairs = getRequiredPairs([die1, die2]);
 
     setDicePairOne([die1, die2]);
@@ -35,7 +35,9 @@ export default function Main() {
   }
 
   function handleFirstRollAnimationEnd() {
-    if (!pendingFirstRoll) return;
+    if (!pendingFirstRoll) {
+      return;
+    }
 
     const { requiredPairs } = pendingFirstRoll;
 
@@ -50,8 +52,8 @@ export default function Main() {
     setRollingPair(null);
   }
 
-  function handleSecondDiceRoll() {
-    const { die1, die2 } = GamePlay.rollPair();
+  function handleSecondDiceRoller() {
+    const { die1, die2 } = DiceRoller.rollPair();
 
     setDicePairTwo([die1, die2]);
 
@@ -62,7 +64,9 @@ export default function Main() {
   }
 
   function handleSecondRollAnimationEnd() {
-    if (pendingSecondRoll === null) return;
+    if (pendingSecondRoll === null) {
+      return;
+    }
 
     setGamePhase(
       pendingSecondRoll ? "connected" : "secondRollFail"
@@ -84,7 +88,7 @@ export default function Main() {
   let dieOneClasses = "h-16 w-16";
   let dieTwoClasses = "h-16 w-16";
   let gamePromptClasses = "flex border rounded-lg bg-footer shadow-footer shadow-sm p-3 h-26 w-87 text-sm";
-  let handleButtonClick = handleFirstDiceRoll;
+  let handleButtonClick = handleFirstDiceRoller;
 
   if (gamePhase === "firstRoll" || gamePhase === "secondRoll") {
     gamePromptClasses += " border-accent/80 text-header/80";
@@ -94,7 +98,7 @@ export default function Main() {
     } else {
       dieOneClasses = "dice-pulse h-17 w-17"; //bg-amber-50 shadow-amber-200/60"
       dieTwoClasses += " dice-bounce";
-      handleButtonClick = handleSecondDiceRoll;
+      handleButtonClick = handleSecondDiceRoller;
     }
   }
 

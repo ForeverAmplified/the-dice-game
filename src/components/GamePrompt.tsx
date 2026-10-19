@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-type MessageProps = {
+type GamePromptProps = {
   message: string;
-};
+}
 
-export default function GamePrompt({ message }: MessageProps) {
+export default function GamePrompt({ message }: GamePromptProps) {
   const [displayedMessage, setDisplayedMessage] = useState("");
 
   useEffect(() => {

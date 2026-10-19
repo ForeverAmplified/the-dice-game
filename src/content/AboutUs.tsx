@@ -16,9 +16,9 @@ export default function AboutUs() {
       <p>
         As we traveled to various cities and locales, the shenanigans when exploring each new place took on a life of
         their own. Hilarity and hijinx ensued, new traditions were established and alliances were formed.  But in all
-        the fun, disputes, unsettled bets, and major questions would arise. Situations like, "Who is picking up the
+        the fun, disputes, unsettled bets and major questions would arise. Situations like, "Who is picking up the
         tab?", "Who gets the primary suite at the hotel in Baltimore?", "Jester's Pizza again?", "Who's sleeping on
-        the foldout sofa?", "Where is Steve's glove?", and "Are we going to that sketchy dive bar down that dark alley
+        the foldout sofa?", "Where is Steve's glove?" and "Are we going to that sketchy dive bar down that dark alley
         or that nice place around the corner?".
       </p>
       <p>
