@@ -1,4 +1,4 @@
-import Button from "./Button.tsx";
+import Button from './Button';
 
 type HamburgerProps = {
   isMobileMenuOpen: boolean;
@@ -6,7 +6,7 @@ type HamburgerProps = {
 };
 
 export default function Hamburger({ isMobileMenuOpen, hamburgerClick }: HamburgerProps) {
-  const hamburgerClasses = "block w-7 h-[0.27rem] rounded bg-black transition-all origin-[1px]";
+  const hamburgerClasses = 'block w-7 h-[0.27rem] rounded bg-black transition-all origin-[1px]';
 
   return (
     <Button

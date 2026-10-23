@@ -1,8 +1,8 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from 'react';
 
-import Die, { type DieValue } from "./Die.tsx";
-import { type GamePhase } from "./Main.tsx";
-import ValidPairs from "./ValidPairs.tsx";
+import Die, { type DieValue } from './Die';
+import { type GamePhase } from './Main';
+import ValidPairs from './ValidPairs';
 
 type DiceProps = {
   className: string;
@@ -35,14 +35,17 @@ export default function Dice({ className, firstPair, phase, isRolling, values, v
 
   const [dieOne, dieTwo] = values;
 
-  const additionalClasses =
-    (phase === "firstRoll" && firstPair) ||
-    (phase === "secondRoll" && !firstPair)
-      ? "border border-accent bg-footer"
-      : "";
+  const addFocusPairClasses =
+    (phase === 'firstRoll' && firstPair) ||
+    (phase === 'secondRoll' && !firstPair);
 
   return (
-    <div className={`flex flex-col justify-top items-top gap-5 h-63 w-43 p-3 rounded-lg ${additionalClasses}`}>
+    <div
+      className={
+        `flex flex-col justify-top items-top gap-5 h-63 w-43 p-3 rounded-lg
+         ${addFocusPairClasses ? "border border-accent bg-footer" : ""}
+      `}
+    >
       <div className={`flex justify-center items-center h-20 ${phase === "connected" ? "gap-4" : "gap-3"}`}>
         <Die
           className={className}

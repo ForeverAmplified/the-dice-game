@@ -90,16 +90,19 @@ export default function HowToPlay() {
       </p>
       <h2 className="font-orbitron font-medium text-xl">Notes On Winning</h2>
       <p>
-        The game can be played as a one-and-done, best 2 out of 3 or whatever suits your needs.
+        Play a single round, best 2 out of 3, or whatever suits your needs.
       </p>
       <p>
-        In the spirit of fairness, the player or team who rolls second always has a chance to tie a round (or game if
-        one-and-done) and keep things alive if the player or team who rolled first completes the straight. This gives
-        everyone an equal chance to complete a straight.
+        If Player 1 completes a straight first, Player 2 must also complete a straight on their next turn to keep the
+        game alive. If Player 2 succeeds, play continues under the same rules: players try to roll a straight.
       </p>
       <p>
-        We hope you enjoy the challenge and find it as fun as we do.  We have come up with a few other games over the
-        years.  This is the first one released digitally.  Stay tuned for more!
+        If Player 2 completes a straight before Player 1, Player 2 wins. Player 1 has already had their opportunity to
+        complete a straight and failed.
+      </p>
+      <p>
+        We hope you enjoy the challenge and find it as fun as we do. We've come up with a few other games over the
+        years, and this is the first one we've released digitally. Stay tuned for more!
       </p>
     </div>
   );

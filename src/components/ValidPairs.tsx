@@ -1,5 +1,5 @@
-import Die, { type DieValue } from "./Die";
-import { type GamePhase } from "./Main.tsx";
+import Die, { type DieValue } from './Die';
+import { type GamePhase } from './Main';
 
 type comboProps = {
   firstPair: boolean;
@@ -17,6 +17,7 @@ const defaultTargetPairs: DieValue[][][] = [
 export default function ValidPairs({ firstPair, phase, validPairs, disabled }: comboProps) {
   const showPlaceHolders = !firstPair && validPairs === null;
   const pairs = validPairs ? [validPairs] : defaultTargetPairs;
+  const inactiveValidPairs = disabled || (phase === 'secondRoll' && firstPair)
 
   const renderValidPairs = showPlaceHolders ? (
     <div className="flex flex-col gap-2">
@@ -49,7 +50,7 @@ export default function ValidPairs({ firstPair, phase, validPairs, disabled }: c
   );
 
   return (
-    <div className={`flex flex-col items-center gap-2 ${disabled || (phase === 'secondRoll' && firstPair) ? "opacity-50" : ""}`}>
+    <div className={`flex flex-col items-center gap-2 ${inactiveValidPairs ? "opacity-50" : ""}`}>
       <div className="border-b flex flex-col gap-0 items-center w-9/10">
         <p className="text-sm">Valid Pairs</p>
       </div>

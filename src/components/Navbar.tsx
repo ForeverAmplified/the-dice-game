@@ -1,15 +1,15 @@
 import { useState } from 'react';
 
-import logoImg from '../assets/images/dice.svg'
+import logoImg from '../assets/images/dice.svg';
 
-import Hamburger from './Hamburger.tsx'
-import MobileMenu from "./MobileMenu.tsx";
-import NavItem from './NavItem.tsx'
-import Modal from './Modal.tsx'
-import AboutUs from "../content/AboutUs.tsx";
-import HowToPlay from '../content/HowToPlay.tsx'
+import Hamburger from './Hamburger';
+import MobileMenu from './MobileMenu';
+import NavItem from './NavItem';
+import Modal from './Modal';
+import AboutUs from '../content/AboutUs';
+import HowToPlay from '../content/HowToPlay';
 
-type ContentType = "howToPlay" | "aboutUs" | null;
+type ContentType = 'howToPlay' | 'aboutUs' | null;
 
 export default function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,12 +37,12 @@ export default function Navbar() {
   let componentContent = null;
   let source = null;
 
-  if (selectedContent === "howToPlay") {
+  if (selectedContent === 'howToPlay') {
     componentContent = <HowToPlay />;
-    source = "How to Play"
-  } else if (selectedContent === "aboutUs") {
+    source = 'How to Play';
+  } else if (selectedContent === 'aboutUs') {
     componentContent = <AboutUs />;
-    source = "About Us"
+    source = 'About Us';
   }
 
   return (
@@ -51,7 +51,7 @@ export default function Navbar() {
         {componentContent}
       </Modal>
 
-      <nav className="mx-auto flex w-full px-4 py-1 max-w-screen-2xl items-center justify-between md:py-1">
+      <nav className="mx-auto flex w-full px-4 py-1 max-w-8xl items-center justify-between md:py-1">
         {/* Logo */}
         <a href="/" className="flex flex-col items-center leading-none">
           <span className="text-sm md:text-base">The</span>
@@ -60,16 +60,16 @@ export default function Navbar() {
         </a>
 
         {/* Navigation */}
-        <div className="hidden md:flex md:items-center md:gap-6">
+        <div className="hidden items-center gap-6 md:flex">
           <NavItem
             className="nav-item"
-            onNavItemClick={() => handleModalOpen("howToPlay")}
+            onNavItemClick={() => handleModalOpen('howToPlay')}
           >
             How to Play
           </NavItem>
           <NavItem
             className="nav-item"
-            onNavItemClick={() => handleModalOpen("aboutUs")}
+            onNavItemClick={() => handleModalOpen('aboutUs')}
           >
             About Us
           </NavItem>
@@ -83,7 +83,7 @@ export default function Navbar() {
         {/* <MobileMenu /> */}
           <MobileMenu isMenuOpen={isMobileMenuOpen} source={source}>
             <>
-              <header className="shrink-0 flex justify-start items-center  bg-header rounded-tl-lg h-18 pl-4 font-orbitron text-2xl text-black font-bold">
+              <header className="shrink-0 flex justify-start items-center  bg-header rounded-tl-lg h-18 pl-4 text-2xl text-black">
                 {componentContent !== null && (
                   <NavItem
                     className="mobile-menu-header nav-item"
@@ -98,13 +98,13 @@ export default function Navbar() {
                 <div className="flex flex-col flex-1  items-start min-h-0 gap-12 px-15 pt-24 bg-page">
                   <NavItem
                     className="mobile-menu nav-item"
-                    onNavItemClick={() => handleMenuItemLoad("howToPlay")}
+                    onNavItemClick={() => handleMenuItemLoad('howToPlay')}
                   >
                     How to Play
                   </NavItem>
                   <NavItem
                     className="mobile-menu nav-item"
-                    onNavItemClick={() => handleMenuItemLoad("aboutUs")}
+                    onNavItemClick={() => handleMenuItemLoad('aboutUs')}
                   >
                     About Us
                   </NavItem>

@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+
+import type { PlayerId } from './Main';
 
 type GamePromptProps = {
+  player: PlayerId;
   message: string;
 }
 
-export default function GamePrompt({ message }: GamePromptProps) {
-  const [displayedMessage, setDisplayedMessage] = useState("");
+export default function GamePrompt({ player, message }: GamePromptProps) {
+  const [displayedMessage, setDisplayedMessage] = useState('');
 
   useEffect(() => {
     let characterIndex = 0;
@@ -25,7 +28,7 @@ export default function GamePrompt({ message }: GamePromptProps) {
 
   return (
     <p className="whitespace-pre-line">
-      {displayedMessage}
+      {`${player} >\n`} {displayedMessage}
       <span className="prompt-cursor" />
     </p>
   );

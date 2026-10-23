@@ -1,6 +1,6 @@
-import { type ComponentPropsWithoutRef } from "react";
+import { type ComponentPropsWithoutRef } from 'react';
 
-type NavItemPropTypes = ComponentPropsWithoutRef<"button"> & {
+type NavItemPropTypes = ComponentPropsWithoutRef<'button'> & {
   onNavItemClick: () => void;
 }
 

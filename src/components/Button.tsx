@@ -1,6 +1,6 @@
-import { type ComponentPropsWithoutRef } from "react";
+import { type ComponentPropsWithoutRef } from 'react';
 
-type ButtonProps = ComponentPropsWithoutRef<"button">;
+type ButtonProps = ComponentPropsWithoutRef<'button'>;
 
 export default function Button({ children, ...buttonProps }: ButtonProps) {
   return (

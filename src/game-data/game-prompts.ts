@@ -1,12 +1,12 @@
-import { type GamePhase } from "../components/Main";
+export type GamePromptKey = keyof typeof gamePrompts;
 
-type GamePrompts = Record<GamePhase, string>;
-
-export const gamePrompts: GamePrompts = {
-  firstRoll: "Start by attempting to roll one of the\n valid consecutive pairs above\n\nRoll dice...",
-  firstRollFail: "That is not a valid consecutive pair\n\n\nBetter luck next time...",
-  secondRoll: "Complete the straight by rolling one of the valid consecutive pairs above.\n\n Roll dice...",
-  secondRollFail: "That is not a valid consecutive pair and the straight is not completed.\n\nBetter luck next time...",
-  connected: "Congratulations! Your consecutive pairs connect and complete the straight.\n\nThe dice have smiled upon you!",
-  gameOver: "has won the game! Update the ledger!",
+export const gamePrompts = {
+  firstRoll: 'Attempt to roll one of the valid\n consecutive pairs shown above.',
+  firstRollPressure: 'It\'s do or die time. Attempt to roll one of\n the valid consecutive pairs shown\n above.',
+  secondRoll: 'Complete the straight by rolling one of\n the valid consecutive pairs shown\n above.',
+  secondRollPressure: 'It\'s not over yet!. Complete the straight by rolling one of\n the valid consecutive pairs shown\n above.',
+  rollFail: 'This did not turn out the way you had\n hoped. Better luck next time...',
+  rollFailPressure: 'You did not rise to the occasion.\n Better luck next time...',
+  connected: 'Congratulations! Your consecutive pairs connect and complete the straight.',
+  connectedPressure: 'Impressive!  You do not go down without a fight! The game continues... ',
 };

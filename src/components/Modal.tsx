@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import type { ComponentPropsWithoutRef, MouseEvent, SyntheticEvent, TransitionEvent } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useRef, useState } from 'react';
+import type { ComponentPropsWithoutRef, MouseEvent, SyntheticEvent, TransitionEvent } from 'react';
+import { createPortal } from 'react-dom';
 
-import Button from "./Button";
+import Button from './Button';
 
-type ModalProps = ComponentPropsWithoutRef<"dialog"> & {
+type ModalProps = ComponentPropsWithoutRef<'dialog'> & {
   isOpen: boolean;
   source: string | null;
   onClose: () => void;
@@ -63,7 +63,7 @@ export default function HowToPlay({ isOpen, source, onClose, children }: ModalPr
   }
 
   const dialogClasses = `
-    modal-dialog m-auto  w-[min(90vw,600px)] max-h-[80vh] overflow-hidden rounded-lg bg-page font-inter text-header
+    modal-dialog m-auto max-h-[80vh] w-[min(90vw,600px)] rounded-lg bg-page font-inter text-header overflow-hidden 
     origin-center open:scale-100 open:opacity-100 starting:open:scale-95 starting:open:opacity-0
   `;
 
@@ -85,6 +85,6 @@ export default function HowToPlay({ isOpen, source, onClose, children }: ModalPr
       </header>
       {children}
     </dialog>,
-    document.getElementById("modal")!
+    document.getElementById('modal')!
   );
 }

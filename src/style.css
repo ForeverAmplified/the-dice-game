@@ -129,6 +129,33 @@ main {
   animation: dice-pulse 1.5s ease-in-out infinite;
 }
 
+@keyframes signal-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.signal-dot::before,
+.signal-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  animation: signal-ring 1.2s ease-out infinite;
+  pointer-events: none;
+}
+
+.signal-dot::after {
+  animation-delay: 0.3s;
+}
+
 @keyframes dice-bounce {
   0%, 100% {
     transform: translateY(0);
@@ -274,4 +301,17 @@ dialog.modal-dialog.modal-closing::backdrop {
     opacity: 0;
     scale: 0.95;
   }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@utility animate-game-over {
+  animation: slide-in-right 300ms ease-in-out 1.5s both;
 }

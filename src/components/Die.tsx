@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export type DieValue = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -23,7 +23,9 @@ export default function Die({ isRolling, value, disabled, className, onRollAnima
   const [rollingValue, setRollingValue] = useState<DieValue>(value);
 
   useEffect(() => {
-    if (!isRolling) return;
+    if (!isRolling) {
+      return;
+    }
 
     setRollingValue(value);
 
@@ -47,9 +49,7 @@ export default function Die({ isRolling, value, disabled, className, onRollAnima
         className={className}
         role="img"
         opacity={opacity}
-        aria-label={
-          isRolling ? "Die rolling" : `Die showing ${value}`
-        }
+        aria-label={isRolling ? "Die rolling" : `Die showing ${value}`}
       >
         {/* White die face */}
         <rect
