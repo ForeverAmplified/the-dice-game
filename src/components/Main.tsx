@@ -169,7 +169,7 @@ export default function Main() {
   }
 
   return (
-    <main className="flex flex-col flex-1 items-center gap-8 mt-14 font-orbitron font-bold text-header md:mt-22">
+    <main className="flex flex-col flex-1 items-center gap-8 mt-12 font-orbitron font-bold text-header md:mt-22">
       {winner !== null && (
         <div
           className={`
@@ -204,7 +204,7 @@ export default function Main() {
         />
       </div>
 
-      <div className="flex flex-col items-center gap-8">
+      <div className="flex flex-col items-center gap-8 pb-8">
         <div className={gamePromptClasses}>
           <GamePrompt key={gamePrompts[gamePhase as GamePromptKey]} player={currentPlayer} message={gamePrompt} />
         </div>
