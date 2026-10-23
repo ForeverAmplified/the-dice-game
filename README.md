@@ -1,6 +1,8 @@
-# The Dice Game
+## About the Game
 
-A custom dice game built with React, TypeScript, and Tailwind CSS.
+The Dice Game is a custom two-player dice game built with React, TypeScript, and Tailwind CSS.
+
+**[Play the Live Demo](https://foreveramplified.github.io/the-dice-game/)**
 
 ## About the Game
 
