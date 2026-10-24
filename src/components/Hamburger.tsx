@@ -6,11 +6,11 @@ type HamburgerProps = {
 };
 
 export default function Hamburger({ isMobileMenuOpen, hamburgerClick }: HamburgerProps) {
-  const hamburgerClasses = 'block w-7 h-[0.27rem] rounded bg-black transition-all origin-[1px]';
+  const hamburgerClasses = 'block w-6 h-[0.25rem] rounded bg-black transition-all origin-[1px]';
 
   return (
     <Button
-      className="flex flex-col flex-wrap justify-around h-7 w-7 z-10 cursor-pointer"
+      className="flex flex-col flex-wrap justify-around h-6 w-6 z-10 cursor-pointer"
       onClick={hamburgerClick}
       aria-label="Toggle mobile menu"
     >

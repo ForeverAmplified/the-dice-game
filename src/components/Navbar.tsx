@@ -51,12 +51,12 @@ export default function Navbar() {
         {componentContent}
       </Modal>
 
-      <nav className="mx-auto flex w-full px-4 py-1 max-w-8xl items-center justify-between md:py-1">
+      <nav className="flex justify-between items-center w-full max-w-8xl mx-auto px-4 py-0.75 md:py-1">
         {/* Logo */}
         <a href="/" className="flex flex-col items-center leading-none">
-          <span className="text-sm md:text-base">The</span>
-          <img className="-my-1 h-9 w-9 opacity-80 md:-my-1 md:h-10 md:w-10" src={logoImg} alt="dice icon" />
-          <span className="text-sm md:text-base -mt-0.5">Game</span>
+          <span className="text-xs md:text-base">The</span>
+          <img className="-my-0.75 h-7 w-7 opacity-80 md:-my-1 md:h-10 md:w-10" src={logoImg} alt="dice icon" />
+          <span className="text-xs md:text-base -mt-0.5">Game</span>
         </a>
 
         {/* Navigation */}
@@ -83,7 +83,7 @@ export default function Navbar() {
         {/* <MobileMenu /> */}
           <MobileMenu isMenuOpen={isMobileMenuOpen} source={source}>
             <>
-              <header className="shrink-0 flex justify-start items-center  bg-header rounded-tl-lg h-18 pl-4 text-2xl text-black">
+              <header className="shrink-0 flex justify-start items-center  bg-header rounded-tl-lg h-15 pl-4 font-orbitron font-bold text-xl text-black">
                 {componentContent !== null && (
                   <NavItem
                     className="mobile-menu-header nav-item"
