@@ -55,7 +55,7 @@ export default function Navbar() {
         {/* Logo */}
         <a href="/" className="flex flex-col items-center leading-none">
           <span className="text-xs md:text-base">The</span>
-          <img className="-my-0.75 h-7 w-7 opacity-80 md:-my-1 md:h-10 md:w-10" src={logoImg} alt="dice icon" />
+          <img className="-my-0.75 h-7.5 w-7.5 opacity-80 md:-my-1 md:h-10 md:w-10" src={logoImg} alt="dice icon" />
           <span className="text-xs md:text-base -mt-0.5">Game</span>
         </a>
 
